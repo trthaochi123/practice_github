@@ -61,57 +61,83 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.green[100],
-      body: SizedBox(  // bọc toàn màn hình
-        child: Column( // column cha
-          children: [
-            SizedBox(  // ptu 1 trong Column
-              height: MediaQuery.of(context).size.height / 2,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: const [
-                  Text("icon"),
-                  SizedBox(height: 8,),
-                  Text("Android Studio"),
-                ],
-              ),
-            ),
-            Container(  // ptu 2 trong Column
-              padding: const EdgeInsets.only(bottom: 40),
-              height: MediaQuery.of(context).size.height / 2,
-              child: Container(
-                color: Colors.blue,
-                child:  Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Column(
-                          children: const [
-                            Text("đsdsd"),
-                            Text("đsdsd"),
-                            Text("đsdsd"),
-                          ],
-                        ),
-                        SizedBox(width: 8,),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
-                            Text("đsdsd"),
-                            Text("đsdsd"),
-                            Text("đsdsd"),
-                          ],
-                        )
-                      ],
-                    )
-                  ],
-                ),
-              ),
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            children: [
+              const SizedBox(height: 50,),
 
-            ),
-          ],
+              // iconAndroid
+              androidIcon(),
+              SizedBox(height: 10,),
+
+
+              // TextField
+              textField(),
+
+              // Information
+              Infomation(),
+
+            ],
+          ),
         ),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
     );
   }
+}
+
+Infomation() {
+  return  Container(
+      margin: EdgeInsets.all(110),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children:[
+          iconAndContent(icon: Icons.phone_rounded,content: '353535353535'),
+          const SizedBox(height: 5),
+          iconAndContent(icon: Icons.share_outlined,content: '@AndroidDev'),
+          const SizedBox(height: 5),
+          iconAndContent(icon: Icons.email_outlined,content: 'thaochi@gmail.com')
+        ],
+      )
+  );
+}
+
+iconAndContent({required IconData icon, required String content}) {
+  return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children:[
+        Icon(icon, color: Colors.green[700]),
+        const SizedBox(width: 40),
+        Text(content,
+            style:  TextStyle(color: Colors.green[700]))
+      ]
+  );
+}
+
+textField() {
+  return Container(
+    child: Column(
+      children: [
+        Text('Tran Thao Chi',
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+        ),
+        SizedBox(height: 5),
+        Text('A Developer Extraodinairy'),
+      ],
+    ),
+  );
+}
+
+androidIcon() {
+  return Container(
+    margin: EdgeInsets.only(top: 200),
+    padding: EdgeInsets.all(30),
+    color: Colors.black38,
+    child: Column(
+      children: [
+        Icon(Icons.android),
+        Text("android"),
+      ],
+    ),
+  );
 }
